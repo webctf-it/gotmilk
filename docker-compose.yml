@@ -1,0 +1,23 @@
+version: "3.5"
+services:
+  gotmilk:
+      build: .
+      restart: always
+      read_only: true
+      ports:
+          - "6000:6000"
+      logging:
+          driver: "json-file"
+          options:
+              max-file: "1"
+              max-size: "5m"
+      #healthcheck:
+      #    test: "/chal/healthchecker.sh"
+      #    timeout: 15s
+      #    interval: 3m
+      #    retries: 3
+
+networks:
+    default:
+        driver_opts:
+            com.docker.network.bridge.name: gotmilk
